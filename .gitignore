@@ -1,0 +1,5 @@
+*.pyc
+app.cfg
+content/
+mydb.db
+static/image

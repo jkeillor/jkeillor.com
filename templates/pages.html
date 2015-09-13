@@ -1,0 +1,7 @@
+$def with (page, pages)
+
+$for pg in pages:
+  $if page['name'] == pg['name']:
+    <li>&raquo; $pg['title']</li>
+  $else:
+    <li><a href="/$pg['name']">$pg['title']</a></li>

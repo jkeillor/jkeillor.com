@@ -1,0 +1,10 @@
+$def with (page, contents, pages)
+$var pgs: $:pages
+
+$if contents:
+  <div class="content">
+      $:contents['render']
+  </div>
+
+
+

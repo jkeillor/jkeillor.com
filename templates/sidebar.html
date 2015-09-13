@@ -1,0 +1,31 @@
+$def with (content)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jkeillor.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/style/main.css" media="screen" />
+</head>
+<body>
+
+
+<div class="sidebar">
+    <h1>Jeremy Keillor</h1>
+    <ul class="horizontal">
+    $:content.pgs
+    </ul>
+
+</div>
+<div class="links">
+    <ul>
+        <li><a href="https://twitter.com/jkeillor">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/in/jeremykeillor">LinkedIn</a></li>
+        <li><a href="https://instagram.com/jkeillor">Instagram</a></li>
+        <li><a href="https://github.com/jkeillor">Github</a></li>
+    </ul>
+</div>
+
+$:content
+</body>
+</html>
