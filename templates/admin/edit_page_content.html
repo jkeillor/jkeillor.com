@@ -1,0 +1,23 @@
+$def with (page, content, form)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        ol { margin: 8px 0; display: block; padding: 0}
+        li { display: block; border: solid 1px black; width: 300px; margin: 4px; padding: 2px;}
+        li h3 { font-size: 16px; margin: 0px; }
+        h2 { margin: 8px 4px;}
+        p { margin: 4px;}
+        div.actions { float: right}
+        .entry { }
+    </style>
+</head>
+<body>
+<h2>Editing Content for Page: $page</h2>
+<form action="" method="post" >
+    $:form.render()
+</form>
+</body>
+</html>

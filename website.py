@@ -1,22 +1,23 @@
 #!/usr/bin/python
 import web
-import ConfigParser
+from config import settings, db
 import markdown
 import StringIO
-
-
+import admin
+import model
 urls = (
+    '/admin', admin.admin_app,
     '/', 'home',
     '/([^/]+)', 'page',
     '/([^/]+)/(\d+)', 'page'
     )
-web.config.debug = True
-app = web.application(urls, globals())
-config = ConfigParser.SafeConfigParser()
-config.read('./app.cfg')
-db = web.database(dbn='sqlite', db=config.get('Settings', 'db'))
-render = web.template.render(config.get('Settings','templates'), base='sidebar')
-plain = web.template.render(config.get('Settings', 'templates'))
+
+
+web.config.debug = False
+app = web.application(urls, locals())
+
+render = web.template.render(settings.get('Settings','templates'), base='sidebar')
+plain = web.template.render(settings.get('Settings', 'templates'))
 
 class home:
     def GET(self):
@@ -24,19 +25,18 @@ class home:
 
 class page:
     def GET(self, name, pg=0):
-        page = db.select('page', vars=dict(name = name), where="name = $name", limit = 1)
-        pages = [dict(title = x.title, name= x.name) for x in list(db.select('page', what = "title, name"))]
+        page = model.get_page(name)
+        pages = model.get_pages()
         if bool(page):
-            p = list(page).pop()
             content = self.__getContent(name)
-            pgs = plain.pages(dict(p), pages)
-            return render.page(dict(p), content, pgs)
+            pgs = plain.pages(dict(page), pages)
+            return render.page(dict(page), content, pgs)
         else:
             raise web.seeother('/home')
 
     def __getContent(self, name):
         content = StringIO.StringIO()
-        markdown.markdownFromFile(input = config.get("Settings", 'content') + name, output = content, extensions = ['markdown.extensions.extra', 'markdown.extensions.smarty'])
+        markdown.markdownFromFile(input = settings.get("Settings", 'content') + name, output = content, extensions = ['markdown.extensions.extra', 'markdown.extensions.smarty'])
         return dict(render = content.getvalue())
 
 if __name__ == "__main__":

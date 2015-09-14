@@ -294,7 +294,7 @@ class Checkbox(Input):
         attrs = self.attrs.copy()
         attrs['type'] = 'checkbox'
         attrs['name'] = self.name
-        attrs['value'] = self.value
+        #attrs['value'] = self.value
 
         if self.checked:
             attrs['checked'] = 'checked'            
