@@ -68,8 +68,8 @@ def update_page_pos(name, position):
 ############################
 # Page Content operations  #
 ############################
-def get_page_contents(pg_name, pg_size, offset, drafts=False):
-    db.select('content', where="page=$pg and draft=d", vars = dict(pg=pg_name, d=int(drafts)), offset=offset, limit = pg_size, order="created DESC")
+def get_page_contents(pg_name, pg_size, offset=0, drafts=False):
+    return db.select('content', where="page=$pg and draft=$d", vars = dict(pg=pg_name, d=int(drafts)), offset=offset, limit=pg_size, order="created DESC")
 
 def get_all_page_contents(pg_name):
     return db.select('content', where="page=$pg_name", vars = locals())

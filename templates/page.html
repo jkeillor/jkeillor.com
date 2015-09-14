@@ -3,7 +3,8 @@ $var pgs: $:pages
 
 $if contents:
   <div class="content">
-      $:contents['render']
+    $for content in contents:
+      $:content
   </div>
 
 
