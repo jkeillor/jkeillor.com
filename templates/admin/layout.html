@@ -1,0 +1,25 @@
+$def with (content)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/style/admin.css" media="screen" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" ></script>
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="/admin/">Home</a></li>
+        <li><a href="/admin/page">Pages</a></li>
+        <li><a href="/admin/site">Site Settings</a></li>
+        <li><a href="/admin/logout">Logout</a></li>
+    </ul>
+</header>
+<div class="content">
+    $:content
+</div>
+</body>
+</html>

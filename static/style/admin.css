@@ -1,0 +1,19 @@
+body { margin: 0; padding: 0; font-family: sans-serif;background: #eee; }
+div ul, ol { margin: 8px 0; display: block; padding: 0}
+
+header li { display: inline-block;}
+header ul { margin: 0; display: block; min-width: 400px;}
+header { width: 100%; background: #003aca; color: white; display: block; height: 45px; position: fixed; top: 0; left: 0;}
+header a { display: inline-block; padding: 12px 18px; color: white; font-weight: bold; font-size: 18px; text-decoration: none;}
+header a:hover { background: #005aea}
+
+.content li h3 { font-size: 16px; margin: 0px; }
+.content { padding: 4px 0; margin: 45px 0; width: 400px;}
+.ui-sortable li { display: block; border: solid 1px black; width: 300px; margin: 4px; padding: 2px; background: #dedede}
+.content li { display: block; width: 400px; margin: 4px; padding: 2px; }
+.content ol { border: solid 1px black; padding: 2px; width: 416px;}
+button { float: right;}
+h2 { margin: 8px 4px;}
+
+p { margin: 4px;}
+div.actions { float: right}

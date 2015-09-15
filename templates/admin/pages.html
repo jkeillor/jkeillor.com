@@ -1,39 +1,24 @@
 $def with (pages)
 
-<!DOCTYPE html>
-<html>
-<head>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" ></script>
-    <style type="text/css">
-        ol { margin: 8px 0; display: block; padding: 0}
-        li { display: block; border: solid 1px black; width: 300px; margin: 4px; padding: 2px;}
-        li h3 { font-size: 16px; margin: 0px; }
-        h2 { margin: 8px 4px;}
-        p { margin: 4px;}
-        div.actions { float: right}
-    </style>
-    <script type="text/javascript">
-        jQuery(function() {
-            jQuery( "#sortable" ).sortable();
-            jQuery( "#sortable" ).disableSelection();
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery( "#sortable" ).sortable();
+        jQuery( "#sortable" ).disableSelection();
 
-            jQuery("form").submit(
-                    function() {
-                        var newOrder = jQuery("#sortable").sortable('toArray');
-                        var ret = "[";
-                        for( var i = 0; i < newOrder.length; i++ ) {
-                            var n = newOrder[i];
-                            ret += "{\"name\":\""+n+"\",\"pos\":"+(i+1)+"},";
-                        }
-                        ret = ret.substring(0, ret.length-1);
-                        ret += "]";
-                        jQuery("#data").attr("value", ret);
-                    });
-        });
-    </script>
-</head>
-<body>
+        jQuery("form").submit(
+                function() {
+                    var newOrder = jQuery("#sortable").sortable('toArray');
+                    var ret = "[";
+                    for( var i = 0; i < newOrder.length; i++ ) {
+                        var n = newOrder[i];
+                        ret += "{\"name\":\""+n+"\",\"pos\":"+(i+1)+"},";
+                    }
+                    ret = ret.substring(0, ret.length-1);
+                    ret += "]";
+                    jQuery("#data").attr("value", ret);
+                });
+    });
+</script>
 <h2>Pages</h2>
 <p><a href="/admin/page/add">Add Page</a></p>
 <form action="" method="post">
@@ -49,6 +34,3 @@ $for page in pages:
 <input name="data" type="hidden" id="data"/>
 <button name="submit" type="submit" id="submit">Update Order</button>
 </form>
-
-</body>
-</html>

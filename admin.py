@@ -23,8 +23,8 @@ admin_app = web.application(urls, locals())
 store = web.session.DBStore(db, 'sessions')
 session = web.session.Session(admin_app, store, initializer={'logged_in': False})
 
-render = web.template.render(settings.get('Settings','admin_templates'))
-
+render = web.template.render(settings.get('Settings','admin_templates'), base='layout')
+plain = web.template.render(settings.get('Settings','admin_templates'))
 def secure(f):
     def proxyfunc(self, *args, **kw):
         if session.logged_in:
@@ -40,7 +40,7 @@ class login:
         form.Button("submit", type="submit", description="Login")
     )
     def GET(self):
-        return render.login(self.login_form)
+        return plain.login("Login", self.login_form)
 
     def POST(self):
         data = self.login_form()
@@ -61,7 +61,7 @@ class site:
     )
     @secure
     def GET(self):
-        return render.site(self.site_form)
+        return render.form(u"Edit Site Properties", self.site_form)
 
     @secure
     def POST(self):
