@@ -28,10 +28,11 @@ class page:
     def GET(self, name, pg=0):
         page = model.get_page(name)
         pages = model.get_pages()
+        ga = model.get_site().ga
         if bool(page):
             content = self.__getContent(page, pg)
             pgs = plain.pages(dict(page), pages)
-            return render.page(dict(page), content, pgs)
+            return render.page(ga, dict(page), content, pgs)
         else:
             raise web.seeother('/home')
 

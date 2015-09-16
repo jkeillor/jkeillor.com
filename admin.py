@@ -57,10 +57,15 @@ class logout:
 class site:
     site_form = form.Form(
         form.Textbox("ga", description="Google Analytics ID"),
-        form.Textbox("title", description="Site Title")
+        form.Textbox("title", description="Site Title"),
+        form.Button("submit", type="submit", description="Save")
     )
     @secure
     def GET(self):
+        site = model.get_site()
+        if site:
+            self.site_form.ga.set_value(site.ga)
+            self.site_form.title.set_value(site.title)
         return render.form(u"Edit Site Properties", self.site_form)
 
     @secure
